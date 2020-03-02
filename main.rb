@@ -26,15 +26,23 @@ class Window < Gosu::Window
 
         @game_over = false
         @grid = Grid.new
+        @clicked = false
     end
 
     def needs_cursor?
         true
     end
 
+    def update
+        if @clicked
+            @grid.make_move(self.mouse_x, self.mouse_y)
+            @clicked = false
+        end
+    end
+
     def button_up(id)
         if id == Gosu::MS_LEFT and not @game_over
-            @grid.make_move(self.mouse_x, self.mouse_y)
+            @clicked = true
         else
             super
         end
