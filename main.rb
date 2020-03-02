@@ -1,3 +1,15 @@
+# TIC-TAC-TOE WITH GOSU
+# PROGRAMMER: Alex Velez
+
+=begin
+    Description:
+    Basic 2 player Tic-Tac-Toe program using the gosu library for simple 
+    graphics. The program uses 2 9 bit bitboards to represent the board 
+    states for the X and O players. Using bitboards requires some math to 
+    get things working, however allows me to quickly check if the game is 
+    over or not.
+=end
+
 require "gosu"
 require_relative "grid"
 
@@ -50,6 +62,9 @@ class Window < Gosu::Window
     def button_up(id)
         if id == Gosu::MS_LEFT and not @game_over
             @clicked = true
+        elsif id == Gosu::KB_SPACE
+            @grid.reset
+            @game_over = false
         else
             super
         end

@@ -49,5 +49,10 @@ class Grid
             end
         end        
     end
+
+    def reset
+        @turn = CONST_X
+        @boards[CONST_X] = @boards[CONST_O] = 0b0_00000000
+    end
 end
 
