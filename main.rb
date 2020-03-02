@@ -35,7 +35,14 @@ class Window < Gosu::Window
 
     def update
         if @clicked
-            @grid.make_move(self.mouse_x, self.mouse_y)
+            if @grid.make_move(self.mouse_x, self.mouse_y)
+                if @grid.check_game_over == -1
+                    @grid.switch_turn
+                else
+                    @game_over = true
+                end
+            end
+
             @clicked = false
         end
     end

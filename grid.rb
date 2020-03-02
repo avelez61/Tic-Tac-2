@@ -16,6 +16,24 @@ class Grid
         end
     end
 
+    def check_game_over
+        for i in (0...GAME_OVER_STATES.length - 1)
+            if @boards[@turn] & GAME_OVER_STATES[i] == GAME_OVER_STATES[i]
+                return 1 # Win
+            end
+        end
+    
+        if @boards[CONST_X] + @boards[CONST_O] == GAME_OVER_STATES[GAME_OVER_STATES.length - 1]
+            return 0 # Draw
+        else
+            return -1 # Continue
+        end
+    end
+
+    def switch_turn
+        @turn == CONST_X ? @turn = CONST_O : @turn = CONST_X
+    end
+
     def draw
         GRID_IMAGE.draw(0, 0, 0)
 
